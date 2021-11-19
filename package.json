@@ -1,0 +1,14 @@
+{
+  "name": "@rockyf/browser-helpers",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "tsc -w",
+    "build": "tsc",
+    "release": "npm run build && npm version patch && npm publish"
+  },
+  "devDependencies": {
+    "typescript": "^4.5.2"
+  }
+}
