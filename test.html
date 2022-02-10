@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+<button onclick="clickPickFile()">Pick file</button>
+
+<script type="module">
+	import {pickFile} from './dist/pick-file.js'
+
+	window.clickPickFile = async function(){
+		const files= await pickFile()
+		console.log(files)
+	}
+</script>
+</body>
+</html>

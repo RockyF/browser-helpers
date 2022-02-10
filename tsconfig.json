@@ -1,11 +1,11 @@
 {
 	"compilerOptions": {
-		"module": "commonjs",
-		"target": "ES2015",
+		"module": "ESNext",
+		"target": "ESNext",
 		"sourceMap": false,
 		"outDir": "dist",
 		"declaration": true,
-		"declarationDir": "types",
+		"declarationDir": "dist/types",
 		"moduleResolution": "Node",
 		"esModuleInterop": true,
 		"resolveJsonModule": true,

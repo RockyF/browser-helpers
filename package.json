@@ -4,10 +4,11 @@
   "main": "dist/index.js",
   "types": "types/index.d.ts",
   "license": "MIT",
+  "type": "module",
   "scripts": {
     "dev": "tsc -w",
     "build": "tsc",
-    "release": "npm run build && npm version patch && npm publish --access publish"
+    "release": "npm version patch && npm publish --access publish"
   },
   "devDependencies": {
     "typescript": "^4.5.2"

@@ -12,13 +12,14 @@ let input: any
  * const files = await pickFile('image/*')
  * console.log('picked file：', files[0].name)
  */
-export async function pickFile(accept?: string,): Promise<File[]> {
+export async function pickFile(accept?: string): Promise<File[]> {
 	return new Promise(resolve => {
 		if (!input) {
 			input = document.createElement('input')
 			input.type = 'file'
 			input.style.visibility = 'hidden'
-			input.style.display = 'none'
+			input.style.position = 'absolute'
+			input.style.left = '-9999px'
 			document.body.appendChild(input)
 		}
 		if (accept) {
