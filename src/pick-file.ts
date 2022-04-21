@@ -42,12 +42,13 @@ export async function pickFile(accept?: string): Promise<File[]> {
 /**
  * pickImage
  * @description pick a image
+ * @param accept - mime type
  * @example pick a image as dataUrl
  * const dataUrl = await pickImage()
  * console.log('image dataUrl:', dataUrl);  //data:image/jpeg;base64,sadghfowedfhgsoieufhg…
  */
-export async function pickImage(): Promise<string> {
-	const files = await pickFile('image/*')
+export async function pickImage(accept: string = 'image/*'): Promise<string> {
+	const files = await pickFile(accept)
 	if (files.length > 0) {
 		return new Promise((resolve, reject) => {
 			const reader = new FileReader()
