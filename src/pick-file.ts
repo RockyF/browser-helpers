@@ -1,6 +1,7 @@
 /**
  * Created by rockyl on 2020/12/8.
  */
+import {file2DataUrl} from "./utils";
 
 let input: any
 
@@ -64,23 +65,15 @@ export function pickFile(accept?: string): Promise<File[]> {
 /**
  * pickImage
  * @description pick a image
+ * @param accept - mime type
  * @example pick a image as dataUrl
  * const dataUrl = await pickImage()
  * console.log('image dataUrl:', dataUrl);  //data:image/jpeg;base64,sadghfowedfhgsoieufhg…
  */
-export async function pickImage(): Promise<string> {
-	const files = await pickFile('image/*')
+export async function pickImage(accept: string = 'image/*'): Promise<string> {
+	const files = await pickFile(accept)
 	if (files.length > 0) {
-		return new Promise((resolve, reject) => {
-			const reader = new FileReader()
-			reader.onload = function () {
-				resolve(reader.result as string)
-			}
-			reader.onerror = function (e) {
-				reject(e)
-			}
-			reader.readAsDataURL(files[0])
-		})
+		return file2DataUrl(files[0])
 	}
 }
 
