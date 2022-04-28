@@ -11,7 +11,7 @@
 	import {pickFile} from './dist/pick-file.js'
 
 	window.clickPickFile = async function(){
-		const files= await pickFile()
+		const files= await pickFile().catch(console.log)
 		console.log(files)
 	}
 </script>

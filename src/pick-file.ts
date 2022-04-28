@@ -12,8 +12,9 @@ let input: any
  * const files = await pickFile('image/*')
  * console.log('picked file：', files[0].name)
  */
-export async function pickFile(accept?: string): Promise<File[]> {
-	return new Promise(resolve => {
+export function pickFile(accept?: string): Promise<File[]> {
+	return new Promise((resolve, reject) => {
+		let picked = false
 		if (!input) {
 			input = document.createElement('input')
 			input.type = 'file'
@@ -25,7 +26,12 @@ export async function pickFile(accept?: string): Promise<File[]> {
 		if (accept) {
 			input.accept = accept
 		}
-		input.onchange = function (e: any) {
+
+		input.addEventListener('change', onChange, {once: true})
+		window.addEventListener('focus', onFocus, {once: true})
+		input.click()
+
+		function onChange(e) {
 			let files = []
 			for (let i = 0, li = input.files.length; i < li; i++) {
 				const file = input.files[i]
@@ -33,9 +39,25 @@ export async function pickFile(accept?: string): Promise<File[]> {
 			}
 			input.files = null
 			input.value = ''
+			clear()
+			picked = true
 			resolve(files)
 		}
-		input.click()
+
+		function onFocus() {
+			setTimeout(() => {
+				//console.log('focus', input.files)
+				if (!picked && input.files.length === 0) {
+					clear()
+					reject('cancel')
+				}
+			}, 100)
+		}
+
+		function clear() {
+			input.removeEventListener('change', onChange)
+			window.removeEventListener('focus', onFocus)
+		}
 	})
 }
 
