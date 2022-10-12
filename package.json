@@ -2,7 +2,7 @@
   "name": "@rockyf/browser-helpers",
   "version": "1.0.5",
   "main": "dist/index.js",
-  "types": "types/index.d.ts",
+  "types": "dist/types/index.d.ts",
   "license": "MIT",
   "type": "module",
   "scripts": {
