@@ -29,7 +29,7 @@ export function pickFile(accept?: string): Promise<File[]> {
 		}
 
 		input.addEventListener('change', onChange, {once: true})
-		window.addEventListener('focus', onFocus, {once: true})
+		//window.addEventListener('focus', onFocus, {once: true})
 		input.click()
 
 		function onChange(e) {
@@ -109,7 +109,7 @@ export async function pickText(accept: string = 'text/*'): Promise<string> {
  * const json = await pickJson()
  * console.log('json object:', json);
  */
-export async function pickJson(accept: string = 'application/json'): Promise<string> {
+export async function pickJson(accept: string = 'application/json'): Promise<any> {
 	const text = await pickText(accept)
 	return JSON.parse(text)
 }
